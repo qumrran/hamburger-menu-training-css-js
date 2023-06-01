@@ -5,170 +5,112 @@
 }
 
 :root {
-	--BurgerColor: black;
-	--MenuColor: rgb(208, 208, 208);
+	--BurgerColor: white;
+	--BackgroundColor: black;
 }
 
 body {
 	font-size: 14px;
 	width: 100vw;
+	height: 100vh;
+	padding: 10px;
 	font-family: 'Roboto', sans-serif;
-	color: var(--BurgerColor);
+	background-color: var(--BackgroundColor);
 }
 
-.nav_wrapper {
+.hamburger {
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	margin: 0;
+}
+
+.hamburger-box {
+	width: 40px;
+	height: 24px;
+	display: inline-block;
+	position: relative;
+}
+
+.hamburger-inner {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
 	width: 100%;
-	height: 5em;
-	background-color: var(--MenuColor);
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
+	height: 3px;
+	background-color: var(--BurgerColor);
+	transition: background-color 0.3s 0.1s ease-in-out;
 }
 
-.company_icon {
-	width: 3.5em;
-	height: 3.5em;
-    display: block;
+.hamburger-inner::before,
+.hamburger-inner::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background-color: var(--BurgerColor);
+	transition: transform 0.3s 0.2s ease-in-out;
 }
 
-.menu {
-	width: 80%;
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	list-style-type: none;
+.hamburger-inner::before {
+	top: 10px;
+}
+
+.hamburger-inner::after {
+	top: -10px;
+}
+
+.hamburger-active {
+	transform: translateX(250px);
+}
+
+.hamburger-active .hamburger-inner {
+	background-color: transparent;
+}
+
+.hamburger-active .hamburger-inner::after {
+	transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger-active .hamburger-inner::before {
+	transform: translateY(-10px) rotate(-45deg);
+}
+
+.hamburger,
+nav {
+	transition: transform 0.3s 0.1s ease-in-out;
+}
+
+nav {
+	height: 100vh;
+	width: 250px;
+	background-color: var(--BurgerColor);
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateX(-250px);
+	transition: transform 0.3s 0.1s ease-in-out;
+}
+
+.active {
+	transform: translateX(0px);
+}
+
+.navigation-list {
+	margin-left: 30px;
+	list-style: none;
+}
+
+.navigation-item {
+	margin-top: 50px;
+	margin-bottom: 40px;
 }
 
 a {
-	position: relative;
 	text-decoration: none;
-	color: var(--BurgerColor);
-}
-
-::before {
-	content: '';
-	position: absolute;
-	display: block;
-	width: 100%;
-	height: 0.1em;
-	bottom: -0.1em;
-	left: 0;
-	background-color: var(--BurgerColor);
-	transform: scaleX(0);
-	
-}
-
-a:hover::before {
-	transform: scaleX(1);
-}
-
-/* .hamburger_icon {
-	position: relative;
-	width: 3.5em;
-	height: 3.5em;
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-    display: none;
-} */
-
-.hamburger_icon {
-
-	position: relative;
-	width: 4em;
-	height: 4em;
-    padding: 2px;
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-    transition: .3s ease-in-out;
-    background-color: var(--MenuColor);
-    border-radius: 5px;
-   
-}
-
-
-.line {
-	width: 80%;
-	height: 0.35em;
-	border-radius: 5em;
-	background-color: var(--BurgerColor);
-    
-}
-
-.line2_active {
-display: none;
-}
-
-
-
-.line1_active {
-   
-   
-    transform: translateY(8px) rotate(45deg);
-   
-    
-   
-}
-
-.line3_active {
-   
-    transform: translateY(-8px) rotate(-45deg);
-}
-
-@media screen and (max-width: 800px) { 
-
-    .nav_wrapper {
-        position: relative;
-        min-width: 100px;
-        max-width: 30%;
-        height: 100vh;
-        background-color: var(--MenuColor);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-
-    .menu {
-        height: 80%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-       
-    }
-
-    .menu .unactive {
-    display: none;
-    }
-
-   
-
-    .company_icon {
-        display: none;
-    }
-
-    .hamburger_icon {
-
-        position: absolute;
-        top: 1.6em;
-        right: 2em;
-        width: 3.5em;
-        height: 3.5em;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        transition: 3s ease-in-out;
-       
-    }
-    
-    
-
+	color: var(--BackgroundColor);
 }
